@@ -25,7 +25,7 @@ namespace Core.Utilities.Helpers.FileHelper
             {
                 File.Delete(filePath);
             }
-            Upload(file, root);
+            return Upload(file, root);
         }
 
         public string Upload(IFormFile file, string root)
