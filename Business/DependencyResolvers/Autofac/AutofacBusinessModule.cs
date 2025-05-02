@@ -4,6 +4,7 @@ using Business.Abstract;
 using Business.Concrete;
 using Core.Utilities.Helpers.FileHelper;
 using Core.Utilities.Interception;
+using Core.Utilities.Security.JWT;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
 using System;
@@ -36,6 +37,14 @@ namespace Business.DependencyResolvers.Autofac
 
             // FileHelper
             builder.RegisterType<FileHelperManager>().As<IFileHelper>().SingleInstance();
+
+            // TokenHelper
+            builder.RegisterType<JwtHelper>().As<ITokenHelper>().SingleInstance();
+
+            // User
+            builder.RegisterType<UserManager>().As<IUserService>().SingleInstance();
+            builder.RegisterType<EfUserDal>().As<IUserDal>().SingleInstance();
+
 
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();
 

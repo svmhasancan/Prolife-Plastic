@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Core.Entities.Concrete;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,5 +29,16 @@ namespace Business.Constanse
         public static string ProductImageAdded = "Ürün Resmi Eklendi";
         public static string ProductImageUpdated = "Ürün Resmi Güncellendi";
         public static string ProductImageDeleted = "Ürün Resmi Silindi";
+
+        // User
+        public static string UserAdded = "Kullanıcı Eklendi";
+        public static string UserDeleted = "Kullanıcı Silindi";
+        public static string UserUpdated = "Kullanıcı Güncellendi";
+        public static string UserNotFound = "Kullanıcı Bulunamadı";
+        public static string EmailAlreadyExists = "Bu E-Mail Sistemde Kayıtlı";
+        public static string UserAlreadyExists = "Kullanıcı Sistemde Kayıtlı";
+        public static string PasswordError = "Hatalı Şifre";
+        public static string SuccessfulyLogin = "Giriş Başarılı";
+        public static string AccessTokenCreated = "Access Token Oluşturuldu";
     }
 }
