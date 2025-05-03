@@ -16,7 +16,7 @@ namespace Core.Aspects.Autofac.Validation
 
         public ValidationAspect(Type validatorType)
         {
-            if(!typeof(IValidator).IsAssignableFrom(validatorType))
+            if (!typeof(IValidator).IsAssignableFrom(validatorType))
             {
                 throw new Exception("Bu Bir Doğrulama Sınıfı Değil");
             }
@@ -33,7 +33,7 @@ namespace Core.Aspects.Autofac.Validation
 
             foreach (var entity in entities)
             {
-                ValidationTool.Validate(validator,entity);
+                ValidationTool.Validate(validator, entity);
             }
         }
     }

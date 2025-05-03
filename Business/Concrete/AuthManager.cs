@@ -26,11 +26,15 @@ namespace Business.Concrete
 
         public IDataResult<User> Login(UserForLoginDto userForLoginDto)
         {
+            byte[] passwordHash, passwordSalt;
             var userToCheck = _userService.GetByMail(userForLoginDto.Email);
 
-            if(userToCheck == null) return new ErrorDataResult<User>(Messages.UserNotFound);
+            if(userToCheck.Data == null) return new ErrorDataResult<User>(Messages.UserNotFound);
 
-            var verifyPassword = HashingHelper.VerifyPasswordHash(userForLoginDto.Password, userToCheck.Data.PasswordHash, userToCheck.Data.PasswordSalt);
+            passwordHash = userToCheck.Data.PasswordHash;
+            passwordSalt = userToCheck.Data.PasswordSalt;
+
+            var verifyPassword = HashingHelper.VerifyPasswordHash(userForLoginDto.Password, passwordHash, passwordSalt);
 
             if (!verifyPassword) return new ErrorDataResult<User>(Messages.PasswordError);
 
@@ -47,7 +51,7 @@ namespace Business.Concrete
                 return new ErrorDataResult<User>(Messages.EmailAlreadyExists);
             }
 
-            HashingHelper.CreatePasswordHash(userForRegisterDto.Password, out passwordSalt, out passwordHash);
+            HashingHelper.CreatePasswordHash(userForRegisterDto.Password, out passwordHash , out passwordSalt);
 
             var user = new User
             {
