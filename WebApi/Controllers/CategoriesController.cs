@@ -37,6 +37,17 @@ namespace WebApi.Controllers
             return BadRequest(result);
         }
 
+        [HttpGet("getbyname")]
+        public IActionResult GetByName(string name)
+        {
+            var result = _categoryService.GetByName(name);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
         [HttpPost("add")]
         public IActionResult Add(Category category)
         {

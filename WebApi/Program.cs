@@ -53,6 +53,7 @@ builder.Services.AddDependencyResolvers(new ICoreModule[]
     new CoreModule()
 });
 
+builder.Services.AddCors();
 
 var app = builder.Build();
 
@@ -65,6 +66,13 @@ if (app.Environment.IsDevelopment())
 
 // Custom Middleware
 app.ConfigureCustomExceptionMiddleware();
+
+app.UseCors(builder => 
+    builder.WithOrigins("http://localhost:4200/")
+    .AllowAnyHeader()
+    .AllowAnyMethod()
+    .AllowAnyOrigin()
+);
 
 app.UseHttpsRedirection();
 

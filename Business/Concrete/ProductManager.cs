@@ -25,7 +25,7 @@ namespace Business.Concrete
             _productDal = productDal;
         }
 
-        [CacheAspect(5)]
+        //[CacheAspect(5)]
         public IDataResult<List<Product>> GetAll()
         {
             return new SuccessDataResult<List<Product>>(_productDal.GetAll());
@@ -36,9 +36,19 @@ namespace Business.Concrete
             return new SuccessDataResult<Product>(_productDal.Get(p => p.Id == id));
         }
 
-        [SecuredOperation("admin,editor")]
-        [ValidationAspect(typeof(ProductValidator))]
-        [CacheRemoveAspect("IProductService.Get")]
+        public IDataResult<List<Product>> GetByCategoryId(int categoryId)
+        {
+            return new SuccessDataResult<List<Product>>(_productDal.GetAll(p => p.CategoryId == categoryId));
+        }
+
+        public IDataResult<List<Product>> GetByBrandId(int brandId)
+        {
+            return new SuccessDataResult<List<Product>>(_productDal.GetAll(p => p.BrandId == brandId));
+        }
+
+        //[SecuredOperation("admin,editor")]
+        //[ValidationAspect(typeof(ProductValidator))]
+        //[CacheRemoveAspect("IProductService.Get")]
         public IResult Add(Product product)
         {
             _productDal.Add(product);

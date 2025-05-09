@@ -30,6 +30,11 @@ namespace Business.Concrete
             return new SuccessDataResult<Brand>(_brandDal.Get(b => b.Id == id));
         }
 
+        public IDataResult<Brand> GetByName(string name)
+        {
+            return new SuccessDataResult<Brand>(_brandDal.Get(b => b.Name == name));
+        }
+
         public IResult Add(Brand brand)
         {
             _brandDal.Add(brand);
