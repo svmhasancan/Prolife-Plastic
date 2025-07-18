@@ -42,11 +42,6 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Product>>(_productDal.GetAll(p => p.CategoryId == categoryId));
         }
 
-        public IDataResult<List<Product>> GetByBrandId(int brandId)
-        {
-            return new SuccessDataResult<List<Product>>(_productDal.GetAll(p => p.BrandId == brandId));
-        }
-
         //[SecuredOperation("admin,editor")]
         //[ValidationAspect(typeof(ProductValidator))]
         //[CacheRemoveAspect("IProductService.Get")]

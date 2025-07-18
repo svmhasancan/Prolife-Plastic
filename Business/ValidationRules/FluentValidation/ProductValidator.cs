@@ -13,8 +13,6 @@ namespace Business.ValidationRules.FluentValidation
         public ProductValidator()
         {
             RuleFor(p => p.Name).NotEmpty();
-            RuleFor(p => p.UnitPrice).NotEmpty();
-            RuleFor(p => p.UnitPrice).GreaterThan(0);
         }
     }
 }

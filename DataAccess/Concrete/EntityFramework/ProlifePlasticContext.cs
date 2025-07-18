@@ -13,7 +13,8 @@ namespace DataAccess.Concrete.EntityFramework
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=Prolife-Plastic;Trusted_Connection=true");
+            // Railway PostgreSQL connection string
+            optionsBuilder.UseNpgsql("Host=trolley.proxy.rlwy.net;Port=18428;Database=railway;Username=postgres;Password=HoJcnwJJzxUiFYYLIrseYfzmwibogfQD;");
         }
         public DbSet<Product> Products { get; set; }
         public DbSet<Brand> Brands { get; set; }
@@ -22,5 +23,10 @@ namespace DataAccess.Concrete.EntityFramework
         public DbSet<User> Users { get; set; }
         public DbSet<OperationClaim> OperationClaims { get; set; }
         public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
+        // Yeni entity'ler
+        public DbSet<BrandaOption> BrandaOptions { get; set; }
+        public DbSet<BrandaColor> BrandaColors { get; set; }
+        public DbSet<CartItem> CartItems { get; set; }
+        public DbSet<Order> Orders { get; set; }
     }
 }

@@ -7,15 +7,17 @@ using System.Threading.Tasks;
 
 namespace Entities.Concrete
 {
-    public class Product:IEntity
+    public class Product : IEntity
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public string Description { get; set; }
         public int CategoryId { get; set; }
-        public int BrandId { get; set; }
-        public bool IsInStock { get; set; }
-        public decimal UnitPrice { get; set; }
-        public string? Description { get; set; }
+        public string ImageUrl { get; set; }
 
+        // Navigation property: Bu ürünün kategorisi
+        public Category Category { get; set; }
+        // Navigation property: Bu ürüne ait branda seçenekleri
+        public ICollection<BrandaOption> BrandaOptions { get; set; }
     }
 }
